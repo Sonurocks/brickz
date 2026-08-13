@@ -1,26 +1,243 @@
 @import "tailwindcss";
 
+/* =========================================================
+   LOCAL FONTS — files must exist in /public/fonts/
+   ========================================================= */
+
+/* Golos Text — Body font */
+@font-face {
+  font-family: "Golos Text";
+  src: url("/fonts/GolosText-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Golos Text";
+  src: url("/fonts/GolosText-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Golos Text";
+  src: url("/fonts/GolosText-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Golos Text";
+  src: url("/fonts/GolosText-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Golos Text";
+  src: url("/fonts/GolosText-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Golos Text";
+  src: url("/fonts/GolosText-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-display: swap;
+}
+
+/* Barlow — Heading font */
+@font-face {
+  font-family: "Barlow";
+  src: url("/fonts/Barlow-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("/fonts/Barlow-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("/fonts/Barlow-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("/fonts/Barlow-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("/fonts/Barlow-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Barlow";
+  src: url("/fonts/Barlow-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Golos Text", ui-sans-serif, system-ui;
+  --font-heading: "Barlow", ui-sans-serif, system-ui;
+
+  /* Brand colors - exact match from Brickz */
+  --color-yellow: #fed403;
+  --color-yellow-hover: #e6a800;
+  --color-social-bg: rgb(89, 88, 93);
+  --color-dark: #1a1a1a;
+  --color-dark-2: #222222;
+  --color-dark-card: #252525;
+  --color-navbar: #2b2b2b;
+  --color-navbar-scrolled: #252525;
+  --color-card-dark: rgb(49, 49, 49);
+  --color-quote-text: rgba(255, 255, 255, 0.8);
+  --color-gray-bg: #f6f6f6;
+  --color-gray-light: #f3f3f3;
+  --color-gray-mid: #888888;
+  --color-gray-text: #b0b0b0;
+  --color-hero-desc: #767676;
+  --color-dark-blue: rgb(43, 43, 43);
+  --color-white: #ffffff;
+  --color-transparent-text: rgba(2, 1, 1, 0);
+  --color-outline-stroke: #e5e5e5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Golos Text", ui-sans-serif, system-ui;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ---- MARQUEE ANIMATION ---- */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 25s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+/* ---- OUTLINE TEXT ---- */
+.text-outline {
+  -webkit-text-stroke: 2px #1a1a1a;
+  color: transparent;
+}
+
+/* ---- SECTION TITLE UNDERLINE ---- */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #fed403;
+  margin-bottom: 16px;
+}
+.section-tag::before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #fed403;
+}
+
+/* ---- BUTTON BASE ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 14px 32px;
+}
+.btn-yellow {
+  background: #fed403;
+  color: #1a1a1a;
+}
+.btn-yellow:hover {
+  background: #1a1a1a;
+  color: #fed403;
+}
+.btn-dark {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+.btn-dark:hover {
+  background: #fed403;
+  color: #1a1a1a;
+}
+.btn-outline-white {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+.btn-outline-white:hover {
+  background: #fed403;
+  border-color: #fed403;
+  color: #1a1a1a;
+}
+
+/* ---- FORM INPUT ---- */
+.form-input {
+  width: 100%;
+  background: #252525;
+  border: none;
+  border-bottom: 2px solid #333333;
+  color: #ffffff;
+  padding: 14px 16px;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.25s;
+}
+.form-input::placeholder {
+  color: #888888;
+}
+.form-input:focus {
+  border-bottom-color: #fed403;
 }
