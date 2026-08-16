@@ -174,9 +174,9 @@ export default function Projects() {
         {/* BOTTOM BAR (Fully on dark background) */}
         <div className="bg-dark pt-12 md:pt-19 pb-20 md:pb-30 relative z-10">
           <div className="w-full mx-auto px-6 xl:px-24">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0">
+            <div className="flex flex-row items-center justify-between gap-4">
               {/* Arrow pagination */}
-              <div className="flex gap-3 md:pl-55 ">
+              <div className="flex gap-3 pl-0 xl:pl-55">
                 <button
                   onClick={() => paginate(-1)}
                   className="w-[52px] h-[52px] rounded-md border-2 border-yellow bg-yellow text-dark flex items-center justify-center
@@ -197,9 +197,9 @@ export default function Projects() {
                 </button>
               </div>
 
-             <div className="md:pr-20">
-               <Button href="#projects" text="View All Projects" />
-             </div>
+              <div className="pr-0 xl:pr-20">
+                <Button href="#projects" text="View All Projects" />
+              </div>
             </div>
           </div>
         </div>

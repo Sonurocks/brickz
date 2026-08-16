@@ -4,12 +4,14 @@ interface ButtonProps {
   text: string;
   href?: string;
   className?: string;
+  onClick?: () => void;
 }
 
-export default function Button({ text, href = "#", className = "" }: ButtonProps) {
+export default function Button({ text, href = "#", className = "", onClick }: ButtonProps) {
   return (
     <a
       href={href}
+      onClick={onClick}
       className={`relative inline-flex items-center text-[15px] font-medium rounded-sm group bg-[#FED403] text-[rgb(26,26,26)] overflow-hidden ${className}`}
     >
       {/* INVISIBLE SPACER TO FORCE EXACT ORIGINAL DIMENSIONS */}

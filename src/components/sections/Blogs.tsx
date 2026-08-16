@@ -29,21 +29,49 @@ const BLOG_POSTS = [
     image: "/assets/blogs/post3.png",
     link: "#",
   },
+  {
+    id: 4,
+    title: "Innovations in Smart Construction Equipment",
+    author: "brickz",
+    date: "December 18, 2025",
+    image: "/assets/blogs/post1.png",
+    link: "#",
+  },
 ];
 
 export default function Blogs() {
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      if (scrollRef.current) {
+        const { clientWidth, scrollWidth, scrollLeft } = scrollRef.current;
+        const maxScroll = scrollWidth - clientWidth;
+        
+        // Calculate width of one card + gap (showing 2 cards on md+)
+        const cardWidth = window.innerWidth >= 768 ? clientWidth / 2 : clientWidth;
+
+        // If we've reached the end, rewind to start, otherwise scroll by 1 card
+        if (scrollLeft >= maxScroll - 10) {
+          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        }
+      }
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, []);
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="w-full mx-auto px-6 xl:px-24">
         {/* Header Section */}
         <div className="text-center mb-16 flex flex-col items-center">
-         
-          
-          <span className="text-[12px] font-bold tracking-[0.2em] uppercase text-gray-500 mb-3 block">
+          <span className="text-[12px] font-bold tracking-[0.2em] uppercase text-gray-500 mb-3 md:mb-1 lg:mb-3 block">
             READ OUR BLOG & NEWS
           </span>
           <h2
-            className="text-3xl md:text-[46px] font-black text-dark leading-tight tracking-[-0.02em] mb-4"
+            className="text-3xl md:text-[46px] font-black text-dark leading-tight tracking-[-0.02em] mb-4 md:mb-2 lg:mb-4"
             style={{ fontFamily: "Barlow, Inter, sans-serif" }}
           >
             Featured News & Insights
@@ -54,7 +82,11 @@ export default function Blogs() {
         </div>
 
         {/* Blog Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-7 pb-8 pt-4 scroll-smooth [&::-webkit-scrollbar]:hidden"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {BLOG_POSTS.map((post, index) => (
             <motion.div
               key={post.id}
@@ -62,7 +94,7 @@ export default function Blogs() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
               viewport={{ once: true }}
-              className="bg-white border border-gray-200 rounded-lg overflow-hidden group  duration-300"
+              className="w-full md:w-[calc(50%-14px)] shrink-0 snap-start bg-white border border-gray-200 rounded-lg overflow-hidden group duration-300"
             >
               {/* Image Section */}
               <div className="w-full h-[320px] relative overflow-hidden">
@@ -90,7 +122,7 @@ export default function Blogs() {
 
                 {/* Title */}
                 <h3
-                  className="text-[22px] font-bold text-dark leading-[1.3] mb-8 line-clamp-2"
+                  className="text-[22px] md:text-[19px] lg:text-[22px] font-bold text-dark leading-[1.4] mb-8"
                   style={{ fontFamily: "Barlow, Inter, sans-serif" }}
                 >
                   {post.title}

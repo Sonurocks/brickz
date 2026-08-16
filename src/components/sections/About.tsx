@@ -38,9 +38,9 @@ export default function About() {
         />
       </motion.div>
 
-      <div className="w-full mx-auto px-5 xl:px-23 relative z-10">
-        <div className="relative bg-gray-bg rounded-md px-6 py-12 lg:px-16 lg:py-26 ">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start relative z-10">
+      <div className="w-full mx-auto px-4 lg:px-6 xl:px-23 relative z-10">
+        <div className="relative bg-gray-bg rounded-md px-5 py-12 lg:px-6 lg:py-20 xl:px-14 xl:py-26 ">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-10 xl:gap-16 items-start relative z-10">
             {/* ---- LEFT: TEXT SIDE ---- */}
             <motion.div
               initial={{ opacity: 0, x: -60 }}
@@ -66,7 +66,7 @@ export default function About() {
                     transition: { staggerChildren: 0.1 },
                   },
                 }}
-                className="text-[36px] md:text-[52px] font-semibold leading-[1.15] tracking-tight text-dark"
+                className="text-[36px] md:text-[52px] lg:text-[40px] xl:text-[52px] font-semibold leading-[1.15] tracking-tight text-dark"
                 style={{ fontFamily: "Barlow, Inter, sans-serif", perspective: 400 }}
               >
                 <span className="xl:whitespace-nowrap">
@@ -109,27 +109,23 @@ export default function About() {
 
               {/* Checklist grid */}
               <div className="flex flex-col gap-3 mt-2">
-                {CHECKLIST.map((row, ri) => (
-                  <div key={ri} className="flex flex-wrap gap-x-10 gap-y-3">
-                    {row.map((item) => (
-                      <div key={item} className="flex items-center gap-2.5">
-                        <svg
-                          className="w-4 h-4 text-dark flex-shrink-0"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={3}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span className="text-[14px] text-dark font-medium">{item}</span>
-                      </div>
-                    ))}
+                {CHECKLIST.flat().map((item, ri) => (
+                  <div key={ri} className="flex items-center gap-2.5">
+                    <svg
+                      className="w-4 h-4 text-dark flex-shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-[15px] text-dark font-medium">{item}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="pt-12">
+              <div className="pt-12 lg:pt-6 xl:pt-12">
                 <Button href="#contact" text="Get Start Now" />
               </div>
             </motion.div>
@@ -154,7 +150,7 @@ export default function About() {
               </motion.div>
 
               {/* Floating skills card */}
-              <div className="absolute -bottom-28 right-4 lg:right-9 bg-white shadow-xs p-8 lg:p-12 w-[90%] lg:w-[460px] z-20">
+              <div className="absolute -bottom-28 right-4 lg:-right-4 xl:right-9 bg-white shadow-xs p-8 lg:p-10 xl:p-12 w-[90%] sm:w-[80%] md:w-[460px] lg:w-[400px] xl:w-[460px] z-20">
                 <motion.h4
                   initial="hidden"
                   whileInView="visible"
