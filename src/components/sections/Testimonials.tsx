@@ -37,11 +37,11 @@ export default function Testimonials() {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       if (rating >= i) {
-        stars.push(<FaStar key={i} className="text-[#FED403] w-4 h-4" />);
+        stars.push(<FaStar key={i} className="text-yellow w-4 h-4" />);
       } else if (rating >= i - 0.5) {
-        stars.push(<FaStarHalfAlt key={i} className="text-[#FED403] w-4 h-4" />);
+        stars.push(<FaStarHalfAlt key={i} className="text-yellow w-4 h-4" />);
       } else {
-        stars.push(<FaRegStar key={i} className="text-[#FED403] w-4 h-4" />);
+        stars.push(<FaRegStar key={i} className="text-yellow w-4 h-4" />);
       }
     }
     return stars;
@@ -78,7 +78,7 @@ export default function Testimonials() {
               viewport={{ once: true }}
               className="w-full md:w-[calc(50%-12px)] xl:w-[calc(33.3333%-16px)] shrink-0 snap-start"
             >
-              <div className="bg-card-dark border border-[#ffffff10] rounded-[6px] pt-[35px] pb-[35px] pl-[35px] pr-[40px] relative overflow-hidden group transition-colors flex flex-col h-full">
+              <div className="bg-card-dark border border-white/10 rounded-[6px] pt-[35px] pb-[35px] pl-[35px] pr-[40px] relative overflow-hidden group transition-colors flex flex-col h-full">
                 <div className="flex justify-between items-start mb-8 relative z-10">
                   <div>
                     <h3 className="text-white font-bold text-[20px]" style={{ fontFamily: "Barlow, Inter, sans-serif" }}>
@@ -87,7 +87,7 @@ export default function Testimonials() {
                     <p className="text-white font-medium text-[14px] mt-1">{testimonial.role}</p>
                   </div>
                   {/* Large Quote Icon */}
-                  <BiSolidQuoteAltRight className="w-14 h-14 text-[#5A5223] absolute top-0 right-0" />
+                  <BiSolidQuoteAltRight className="w-14 h-14 text-quote-gold absolute top-0 right-0" />
                 </div>
 
                 <div className="flex items-center gap-4 mb-8 mt-4">
@@ -100,7 +100,7 @@ export default function Testimonials() {
                   <div className="flex gap-1 mt-2 text-[16px]">{renderStars(testimonial.rating)}</div>
                 </div>
 
-                <p className="text-[#e2e2e2] text-[16px] leading-[26px] italic" style={{ fontFamily: '"Golos Text", sans-serif' }}>
+                <p className="text-white/90 text-[16px] leading-[26px] italic" style={{ fontFamily: '"Golos Text", sans-serif' }}>
                   {testimonial.quote}
                 </p>
               </div>

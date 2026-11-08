@@ -51,10 +51,7 @@ export default function Blog() {
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 {/* Category badge */}
-                <span
-                  className="absolute top-4 left-4 text-xs font-bold uppercase tracking-widest px-3 py-1"
-                  style={{ background: "#FED403", color: "#1A1A1A" }}
-                >
+                <span className="absolute top-4 left-4 text-xs font-bold uppercase tracking-widest px-3 py-1 bg-yellow text-dark">
                   {post.category}
                 </span>
               </div>

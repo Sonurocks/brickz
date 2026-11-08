@@ -24,7 +24,7 @@ const CONTACT_INFO = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative w-full py-10 md:py-14 xl:py-24 overflow-hidden" style={{ backgroundColor: "#F6F6F6" }}>
+    <section id="contact" className="relative w-full py-10 md:py-14 xl:py-24 overflow-hidden bg-gray-bg">
       {/* Global Faint Dotted Map Background */}
       <div
         className="absolute inset-0 z-0 opacity-[0.04]"
@@ -49,7 +49,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="relative z-20 bg-[#2b2b2b] w-full xl:w-[620px] mx-auto xl:mx-0 p-6 md:p-10 lg:p-12 border-t-[5px] border-[#FED403]"
+            className="relative z-20 bg-navbar w-full xl:w-[620px] mx-auto xl:mx-0 p-6 md:p-10 lg:p-12 border-t-[5px] border-yellow"
           >
             <h3
               className="text-white text-[32px] md:text-[40px] font-bold leading-tight mb-3"
@@ -59,32 +59,53 @@ export default function Contact() {
             </h3>
             <p className="text-gray-300 text-[15px] mb-8">The point of using Lorem Ipsum is that it has more</p>
 
-            <form className="flex flex-col gap-4">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const target = e.currentTarget as HTMLFormElement;
+                const btn = target.querySelector('button[type="submit"]') as HTMLButtonElement;
+                if (btn) {
+                  const orig = btn.innerText;
+                  btn.innerText = "✓ Message Sent!";
+                  btn.classList.add("bg-green-600", "text-white");
+                  setTimeout(() => {
+                    btn.innerText = orig;
+                    btn.classList.remove("bg-green-600", "text-white");
+                    target.reset();
+                  }, 3000);
+                }
+              }}
+              className="flex flex-col gap-4"
+            >
               <input
                 type="text"
+                required
                 placeholder="Your name"
-                className="w-full bg-[#363636] text-white placeholder-gray-400 px-6 py-4 text-[15px] outline-none focus:ring-1 focus:ring-yellow-400 transition-all"
+                className="w-full bg-input-dark text-white placeholder-gray-400 px-6 py-4 text-[15px] outline-none border-none transition-all"
               />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input
                   type="email"
+                  required
                   placeholder="Your email"
-                  className="w-full bg-[#363636] text-white placeholder-gray-400 px-6 py-4 text-[15px] outline-none focus:ring-1 focus:ring-yellow-400 transition-all"
+                  className="w-full bg-input-dark text-white placeholder-gray-400 px-6 py-4 text-[15px] outline-none border-none transition-all"
                 />
                 <input
                   type="tel"
                   placeholder="Your phone"
-                  className="w-full bg-[#363636] text-white placeholder-gray-400 px-6 py-4 text-[15px] outline-none focus:ring-1 focus:ring-yellow-400 transition-all"
+                  className="w-full bg-input-dark text-white placeholder-gray-400 px-6 py-4 text-[15px] outline-none border-none transition-all"
                 />
               </div>
               <textarea
                 rows={4}
-                placeholder="Your massage"
-                className="w-full bg-[#363636] text-white placeholder-gray-400 px-6 py-4 text-[15px] outline-none focus:ring-1 focus:ring-yellow-400 transition-all resize-none mb-2"
+                required
+                placeholder="Your message"
+                className="w-full bg-input-dark text-white placeholder-gray-400 px-6 py-4 text-[15px] outline-none border-none transition-all resize-none mb-2"
               />
               <button
                 type="submit"
-                className="bg-[#FED403] hover:bg-white text-dark font-bold text-[15px] py-4 px-8 w-max transition-colors duration-300"
+                className="bg-yellow hover:bg-dark text-dark hover:text-yellow font-bold text-[15px] py-4 px-8 w-max transition-colors duration-300 cursor-pointer font-space-grotesk"
+                style={{ fontFamily: 'var(--font-space-grotesk), "Space Grotesk", sans-serif' }}
               >
                 Submit Now
               </button>
@@ -119,8 +140,8 @@ export default function Contact() {
             <div className="flex flex-col gap-5">
               {CONTACT_INFO.map((info, idx) => (
                 <div key={idx} className="flex items-center gap-6">
-                  <div className="w-[70px] h-[70px] bg-[#313131] rounded-md flex items-center justify-center flex-shrink-0">
-                    <info.icon className="w-8 h-8 text-[#FED403] stroke-[1.5]" />
+                  <div className="w-[70px] h-[70px] bg-card-dark rounded-md flex items-center justify-center flex-shrink-0">
+                    <info.icon className="w-8 h-8 text-yellow stroke-[1.5]" />
                   </div>
                   <div>
                     <h4

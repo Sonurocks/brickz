@@ -45,10 +45,10 @@ export default function CTA() {
   };
 
   return (
-    <section className="relative pt-24 pb-24 z-20 before:absolute before:bottom-0 before:left-0 before:w-full before:h-[50%] before:bg-[#2b2b2b] before:-z-10">
+    <section className="relative pt-24 pb-24 z-20 before:absolute before:bottom-0 before:left-0 before:w-full before:h-[50%] before:bg-navbar before:-z-10">
       <div className="w-full mx-auto px-6 xl:px-23">
         {/* Yellow Banner */}
-        <div className="relative bg-[#FED403] rounded-lg w-full flex flex-col lg:flex-row items-center min-h-[330px] pt-16 pb-[240px] lg:pt-0 lg:pb-0">
+        <div className="relative bg-yellow rounded-lg w-full flex flex-col lg:flex-row items-center min-h-[330px] pt-16 pb-[240px] lg:pt-0 lg:pb-0">
           {/* Left: Overlapping Image */}
           <div className="w-full lg:w-[35%] flex justify-center lg:justify-start items-center z-10 order-3 lg:order-1">
             <motion.div
@@ -62,6 +62,7 @@ export default function CTA() {
                 src="/assets/ctaleftpost.png"
                 alt="Construction Worker"
                 fill
+                sizes="(max-width: 1024px) 200px, 320px"
                 className="object-contain object-bottom"
                 priority
               />
@@ -111,7 +112,7 @@ export default function CTA() {
                               fontWeight: "500",
                               letterSpacing: "2px",
                               fontFamily: "Barlow, Inter, sans-serif",
-                              color: "#1a1a1a",
+                              color: "var(--color-dark)",
                               background: "transparent",
                               lineHeight: 1,
                               userSelect: "none",
@@ -144,7 +145,7 @@ export default function CTA() {
                   className="relative z-10 w-10 h-10 flex items-center justify-center"
                   style={{ marginTop: "-12px" }}
                 >
-                  <FiArrowUpRight className="w-8 h-8 text-[#1a1a1a]" strokeWidth={2.5} />
+                  <FiArrowUpRight className="w-8 h-8 text-dark" strokeWidth={2.5} />
                 </motion.div>
               </motion.div>
             </motion.div>

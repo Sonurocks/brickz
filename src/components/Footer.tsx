@@ -6,11 +6,12 @@ import Image from "next/image";
 import { ArrowUpRight, ChevronsRight } from "lucide-react";
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaPinterestP } from "react-icons/fa";
 import { motion } from "framer-motion";
+import AnimatedButton from "./common/AnimatedButton";
 
 const FooterLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
   return (
     <motion.li initial="rest" whileHover="hover" animate="rest" className="flex">
-      <Link href={href} className="inline-flex items-center text-[#A0A0A0] hover:text-[#FED403] transition-colors">
+      <Link href={href} className="inline-flex items-center text-gray-text hover:text-yellow transition-colors">
         <motion.div
           variants={{
             rest: { x: 0 },
@@ -25,7 +26,7 @@ const FooterLink = ({ href, children }: { href: string; children: React.ReactNod
               hover: { opacity: 1 },
             }}
             transition={{ duration: 0.2 }}
-            className="absolute -left-[20px] flex items-center text-[#FED403]"
+            className="absolute -left-[20px] flex items-center text-yellow"
           >
             <ChevronsRight className="w-[16px] h-[16px]" strokeWidth={3} />
           </motion.span>
@@ -39,10 +40,10 @@ const FooterLink = ({ href, children }: { href: string; children: React.ReactNod
 export default function Footer() {
   return (
     <>
-      <footer className="bg-card-dark w-full" style={{ color: "#ffffff", fontFamily: '"Golos Text", sans-serif' }}>
+      <footer className="bg-card-dark w-full text-white" style={{ fontFamily: '"Golos Text", sans-serif' }}>
         <div className="w-full max-w-[1300px] mx-auto flex flex-col lg:flex-row relative px-4 lg:px-[30px] xl:px-0">
           {/* Left Column */}
-          <div className="relative w-full lg:w-[28%] xl:w-[395px] lg:flex-shrink-0 pt-12 lg:pt-[100px] pb-12 lg:pb-[230px] ml-0 lg:ml-[10px] border-b lg:border-b-0 lg:border-r border-[rgba(255,255,255,0.082)] pr-4 lg:pr-[30px] xl:pr-0">
+          <div className="relative w-full lg:w-[28%] xl:w-[395px] lg:flex-shrink-0 pt-12 lg:pt-[100px] pb-12 lg:pb-[230px] ml-0 lg:ml-[10px] border-b lg:border-b-0 lg:border-r border-white/10 pr-4 lg:pr-[30px] xl:pr-0">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 mb-8">
               <Image
@@ -54,7 +55,7 @@ export default function Footer() {
               />
             </Link>
 
-            <p className="text-[16px] leading-[26px] mb-10" style={{ color: "rgb(150, 150, 150)", fontWeight: 400 }}>
+            <p className="text-[16px] leading-[26px] mb-10 text-gray-400 font-normal">
               Brickz specializes in helping startups
               <br />
               and enterprises craft strate solutions
@@ -62,7 +63,7 @@ export default function Footer() {
               donec eu magna quis fells
             </p>
 
-            <div className="flex flex-col gap-5 text-[16px] leading-[26px]" style={{ color: "rgb(150, 150, 150)" }}>
+            <div className="flex flex-col gap-5 text-[16px] leading-[26px] text-gray-400">
               <p>Call us: +990 123 456 789</p>
               <p>Email: contruction@gmail.com</p>
               <p>Hours: Mon-Fri: 8.00am - 18.00pm</p>
@@ -73,7 +74,7 @@ export default function Footer() {
                 <a
                   key={i}
                   href="#"
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border border-[rgba(255,255,255,0.05)] bg-card-dark text-[#A0A0A0] hover:bg-[#FED403] hover:text-[#1A1A1A] hover:border-[#FED403]"
+                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border border-white/5 bg-card-dark text-gray-text hover:bg-yellow hover:text-dark hover:border-yellow"
                 >
                   <Icon className="w-4 h-4" />
                 </a>
@@ -91,7 +92,7 @@ export default function Footer() {
                   Quick Links
                   <span className="absolute bottom-0 left-0 w-16 h-[2px] bg-white"></span>
                 </h4>
-                <ul className="flex flex-col gap-3 lg:gap-6 text-[16px]" style={{ color: "#A0A0A0" }}>
+                <ul className="flex flex-col gap-3 lg:gap-6 text-[16px] text-gray-text">
                   {["About Us", "Contact Us", "Projects", "Services"].map((link) => (
                     <FooterLink key={link} href="#">
                       {link}
@@ -106,7 +107,7 @@ export default function Footer() {
                   Industries
                   <span className="absolute bottom-0 left-0 w-16 h-[2px] bg-white"></span>
                 </h4>
-                <ul className="flex flex-col gap-3 lg:gap-6 text-[16px]" style={{ color: "#A0A0A0" }}>
+                <ul className="flex flex-col gap-3 lg:gap-6 text-[16px] text-gray-text">
                   {["Residential", "Commercial", "Industrial", "Civil Works"].map((link) => (
                     <FooterLink key={link} href="#">
                       {link}
@@ -121,7 +122,7 @@ export default function Footer() {
                   Services
                   <span className="absolute bottom-0 left-0 w-16 h-[2px] bg-white"></span>
                 </h4>
-                <ul className="flex flex-col gap-3 lg:gap-6 text-[16px]" style={{ color: "#A0A0A0" }}>
+                <ul className="flex flex-col gap-3 lg:gap-6 text-[16px] text-gray-text">
                   {[
                     "General Contracting",
                     "Planning, Design & Build",
@@ -136,41 +137,48 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Newsletter Box */}
-            <div className="mt-16 bg-[rgba(255,255,255,0.05)] rounded-[4px] p-6 lg:p-7 flex flex-col gap-4">
-              <h3 className="text-white text-[18px] md:text-[24px] font-bold tracking-tight">Subscribe Newsletter</h3>
+            {/* Newsletter Box — responsive (stacked on <xl, single row on xl+) */}
+            <div className="mt-[35px] xl:mt-16 w-full xl:w-[774px] min-h-[82px] bg-white/5 rounded-[6px] p-6 sm:p-7 xl:pt-[16px] xl:pb-[16px] xl:pl-[25px] xl:pr-[16px] flex flex-col xl:flex-row items-start xl:items-center justify-between gap-5 xl:gap-[20px] relative z-[1]">
+              <h3
+                className="text-white text-[22px] sm:text-[24px] font-bold leading-[34px] tracking-tight whitespace-nowrap"
+                style={{ fontFamily: 'var(--font-space-grotesk), "Cal Sans", "Barlow", sans-serif' }}
+              >
+                Subscribe Newsletter
+              </h3>
 
-              {/* Mobile: input stacked above, button below separately */}
-              <div className="flex flex-col sm:hidden gap-3">
-                <input
-                  type="email"
-                  placeholder="Your email address.."
-                  className="w-full bg-[rgb(49,49,49)] text-[#888888] placeholder-[#888888] px-5 py-3.5 text-[15px] outline-none border border-transparent focus:border-[#FED403] transition-all rounded-[4px]"
+              {/* Form / Container — stacked on <xl, single pill on xl+ */}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const target = e.currentTarget as HTMLFormElement;
+                  const input = target.querySelector('input[type="email"]') as HTMLInputElement;
+                  if (input && input.value) {
+                    const prev = input.placeholder;
+                    input.value = "";
+                    input.placeholder = "✓ Subscribed successfully!";
+                    setTimeout(() => {
+                      input.placeholder = prev;
+                    }, 3000);
+                  }
+                }}
+                className="w-full xl:w-[450px] flex flex-col xl:flex-row items-start xl:items-center gap-4 xl:gap-[12px] xl:bg-card-dark xl:rounded-[6px] xl:p-[6px] xl:pl-[22px] xl:justify-between"
+              >
+                <div className="w-full bg-card-dark xl:bg-transparent rounded-[6px] px-5 py-3.5 xl:p-0 flex items-center">
+                  <input
+                    type="email"
+                    required
+                    placeholder="Your email address.."
+                    className="w-full bg-transparent text-white placeholder-gray-mid text-[15px] outline-none border-none"
+                    style={{ fontFamily: '"Golos Text", sans-serif' }}
+                  />
+                </div>
+                <AnimatedButton
+                  type="submit"
+                  text="Let's Join"
+                  variant="yellow"
+                  className="rounded-[6px] px-[22px] py-[12px] xl:px-[20px] xl:py-[10px] text-[15px] font-semibold flex-shrink-0 whitespace-nowrap"
                 />
-                <button
-                  className="bg-[#FED403] hover:bg-white font-semibold text-[15px] px-6 py-3.5 flex items-center gap-2 transition-colors rounded-[4px] w-fit whitespace-nowrap flex-shrink-0"
-                  style={{ color: "#1A1A1A" }}
-                >
-                  Let's Join
-                  <ArrowUpRight className="w-4 h-4 stroke-[2.5] flex-shrink-0" />
-                </button>
-              </div>
-
-              {/* sm+: input + button attached side by side */}
-              <div className="hidden sm:flex w-full">
-                <input
-                  type="email"
-                  placeholder="Your email address.."
-                  className="flex-1 bg-[rgb(49,49,49)] text-[#888888] placeholder-[#888888] px-5 py-3.5 text-[15px] outline-none border border-transparent focus:border-[#FED403] transition-all rounded-l-[4px]"
-                />
-                <button
-                  className="bg-[#FED403] hover:bg-white font-semibold text-[15px] px-6 py-3.5 flex items-center gap-2 transition-colors rounded-r-[4px] flex-shrink-0 whitespace-nowrap"
-                  style={{ color: "#1A1A1A" }}
-                >
-                  Let's Join
-                  <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
-                </button>
-              </div>
+              </form>
             </div>
 
             {/* Badges (Bottom Right area) */}
@@ -201,17 +209,17 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[rgba(255,255,255,0.08)] relative">
-          <div className="w-full max-w-[1300px] mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
+        <div className="border-t border-white/10 relative">
+          <div className="w-full max-w-[1300px] mx-auto px-4 py-5 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
-              <Link href="#" className="text-[16px] text-[#A0A0A0] hover:text-[#FED403] transition-colors">
+              <Link href="#" className="text-[16px] text-gray-text hover:text-yellow transition-colors">
                 Terms &amp; Agreements
               </Link>
-              <Link href="#" className="text-[16px] text-[#A0A0A0] hover:text-[#FED403] transition-colors">
+              <Link href="#" className="text-[16px] text-gray-text hover:text-yellow transition-colors">
                 Privacy Policy
               </Link>
             </div>
-            <p className="text-[16px] text-[#A0A0A0]">© Copyright 2026 RSTheme</p>
+            <p className="text-[16px] text-gray-text">© Copyright {new Date().getFullYear()} RSTheme. All Rights Reserved.</p>
           </div>
         </div>
       </footer>

@@ -1,14 +1,13 @@
 'use client';
 // src/components/sections/Marquee.tsx
 import React from 'react';
-import { Asterisk } from 'lucide-react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const TICKER_ITEMS = [
-  "Construction . Company . since 1999 .",
-  "Construction . Company . since 1999 .",
-  "Construction . Company . since 1999 .",
-  "Construction . Company . since 1999 .",
+const DEFAULT_MARQUEE_ITEMS = [
+  "Construction",
+  "Building",
+  "Renovation",
 ];
 
 interface MarqueeProps {
@@ -22,13 +21,13 @@ interface MarqueeProps {
 export default function Marquee({
   dark = false,
   outline = false,
-  items = TICKER_ITEMS,
-  speed = '90s',
+  items = DEFAULT_MARQUEE_ITEMS,
+  speed = '40s',
   direction = 'left',
 }: MarqueeProps) {
-  const duration = parseInt(speed) || 30;
+  const duration = parseInt(speed) || 35;
   
-  // Right direction starts at -50% and moves to 0%
+  // Right direction starts at -50% and moves to 0%, left moves 0% to -50%
   const xAnimation = direction === 'right' ? ["-50%", "0%"] : ["0%", "-50%"];
 
   if (outline) {
@@ -39,7 +38,7 @@ export default function Marquee({
           animate={{ x: xAnimation }}
           transition={{ repeat: Infinity, ease: "linear", duration }}
         > 
-          {[...items, ...items].map((item, i) => (
+          {[...items, ...items, ...items, ...items].map((item, i) => (
             <span
               key={i}
               className="text-[120px] font-semibold mx-8 tracking-tight leading-[110px] text-center uppercase"
@@ -56,23 +55,51 @@ export default function Marquee({
     );
   }
 
+  // Duplicate items to ensure seamless infinite looping track
+  const duplicatedItems = [
+    ...items,
+    ...items,
+    ...items,
+    ...items,
+    ...items,
+    ...items,
+    ...items,
+    ...items,
+  ];
+
   return (
     <div
-      className="overflow-hidden py-6 border-b border-gray-300 flex whitespace-nowrap"
-      style={{ background: dark ? '#1A1A1A' : '#F6F6F6' }}
+      className={`overflow-hidden py-[25px] border-y border-[#E3E3E8] flex whitespace-nowrap ${
+        dark ? 'bg-dark' : 'bg-[#F6F6F6]'
+      }`}
     >
       <motion.div
-        className="flex w-max gap-8"
+        className="flex w-max items-center"
         animate={{ x: xAnimation }}
         transition={{ repeat: Infinity, ease: "linear", duration }}
       >
-        {[...items, ...items, ...items, ...items].map((item, i) => (
-          <span
-            key={i}
-            className="text-[20px] md:text-[24px] font-semibold text-dark flex items-center uppercase"
-          >
-            {item}
-          </span>
+        {duplicatedItems.map((item, i) => (
+          <div key={i} className="flex items-center gap-4 sm:gap-6 mx-2 sm:mx-3 shrink-0">
+            <span
+              className="text-[22px] sm:text-[25px] md:text-[26px] font-normal leading-none tracking-normal capitalize text-black"
+              style={{
+                fontFamily: 'var(--font-cal-sans)',
+                color: '#000000',
+                fontWeight: 600,
+              }}
+            >
+              {item}
+            </span>
+            <div className="relative w-[19px] h-[19px] sm:w-[25px] sm:h-[25px] flex items-center justify-center shrink-0">
+              <Image
+                src="/assets/star.png"
+                alt="Star Icon"
+                width={25}
+                height={25}
+                className="w-full h-full object-contain brightness-0"
+              />
+            </div>
+          </div>
         ))}
       </motion.div>
     </div>

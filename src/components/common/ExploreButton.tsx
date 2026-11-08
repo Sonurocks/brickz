@@ -14,15 +14,10 @@ export default function ExploreButton({ href = "#", text = "Explore More", class
 
   return (
     <Link href={href}>
-      <motion.div
+      <div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        animate={{
-          backgroundColor: isHovered ? '#FED403' : '#2b2b2b',
-          color: isHovered ? '#1A1A1A' : '#ffffff',
-        }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className={`flex items-center justify-between rounded-md px-6 py-4 cursor-pointer overflow-hidden ${className}`}
+        className={`flex items-center justify-between rounded-md px-6 py-4 cursor-pointer overflow-hidden bg-navbar hover:bg-yellow text-white hover:text-dark transition-all duration-300 ${className}`}
       >
         <span className="text-[15px] font-bold relative z-10">{text}</span>
         
@@ -36,7 +31,7 @@ export default function ExploreButton({ href = "#", text = "Explore More", class
         >
           <RxArrowTopRight className="w-5 h-5" strokeWidth={0.5} />
         </motion.div>
-      </motion.div>
+      </div>
     </Link>
   );
 }

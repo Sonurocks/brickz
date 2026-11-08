@@ -42,10 +42,10 @@ export default function ScrollToTop() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 md:bottom-6 md:right-8 z-[99] flex items-center justify-center w-[40px] h-[40px] bg-[#FED403] rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] cursor-pointer"
+          className="fixed bottom-6 right-6 md:bottom-6 md:right-8 z-[99] flex items-center justify-center w-[40px] h-[40px] bg-yellow rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] cursor-pointer"
           aria-label="Scroll to top"
         >
-          <ArrowUp className="absolute text-[#1A1A1A] w-[18px] h-[18px] z-10" strokeWidth={2.5} />
+          <ArrowUp className="absolute text-dark w-[18px] h-[18px] z-10" strokeWidth={2.5} />
           
           <svg
             height="40"
@@ -54,7 +54,7 @@ export default function ScrollToTop() {
           >
             {/* The progress circle stroke - Hardware accelerated by Framer Motion */}
             <motion.circle
-              stroke="#1A1A1A"
+              stroke="var(--color-dark)"
               fill="transparent"
               strokeWidth="2.5"
               strokeDasharray={circumference}

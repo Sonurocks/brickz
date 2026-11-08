@@ -68,34 +68,32 @@ export default function Projects() {
           >
             Our Project Excellence
           </h2>
-          <p className="text-[#767676] text-[16px] leading-relaxed max-w-[560px] mx-auto mt-4">
+          <p className="text-hero-desc text-[16px] leading-relaxed max-w-[560px] mx-auto mt-4">
             We combine innovation, expertise, and excellence to drive sustainable growth future by repairing and
             improving their and success.
           </p>
-          <div className="inline-flex flex-col mt-10">
-            <div className="h-[0.5px] bg-gray-300 mb-5" />
+          <div className="inline-flex flex-col w-full max-w-[360px] sm:max-w-none mx-auto mt-8 sm:mt-10">
+            <div className="h-[1px] bg-gray-200 mb-4 sm:mb-5" />
 
-            <div className="flex flex-wrap justify-center gap-19">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 sm:gap-x-10 lg:gap-x-16 gap-y-3.5 sm:gap-y-0">
               {PROJECT_FILTERS.map((filter) => (
                 <button
                   key={filter.value}
                   onClick={() => handleFilter(filter.value)}
-                  className={`relative pb-3 text-[18px] font-semibold transition-colors duration-200 border-none bg-transparent cursor-pointer ${
-                    activeFilter === filter.value ? "text-dark" : "text-[#767676]"
-                  }`}
+                  className="relative pb-3 text-[16px] sm:text-[18px] font-semibold text-dark transition-colors duration-200 border-none bg-transparent cursor-pointer whitespace-nowrap"
                 >
                   {filter.label}
                   {activeFilter === filter.value && (
                     <motion.div
                       layoutId="project-filter-underline"
-                      className="absolute bottom-0 left-0 right-0 h-[4px] bg-yellow"
+                      className="absolute bottom-0 left-0 right-0 h-[3px] sm:h-[4px] bg-yellow"
                     />
                   )}
                 </button>
               ))}
             </div>
 
-            <div className="h-[0.5px] bg-gray-300" />
+            <div className="h-[1px] bg-gray-200 mt-4 sm:mt-5" />
           </div>
         </div>
       </div>

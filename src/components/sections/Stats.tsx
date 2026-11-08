@@ -6,7 +6,7 @@ import { STATS } from "@/lib/constants";
 
 export default function Stats() {
   return (
-    <section style={{ background: "#1A1A1A" }}>
+    <section className="bg-dark">
       <div className="w-full mx-auto px-6 xl:px-8 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {STATS.map((stat, i) => (
@@ -19,8 +19,8 @@ export default function Stats() {
               className="text-center flex flex-col items-center gap-2"
             >
               <span
-                className="text-4xl md:text-5xl font-black"
-                style={{ color: "#FED403", fontFamily: "Barlow, Inter, sans-serif" }}
+                className="text-4xl md:text-5xl font-black text-yellow"
+                style={{ fontFamily: "Barlow, Inter, sans-serif" }}
               >
                 {stat.value}
               </span>

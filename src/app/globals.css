@@ -96,6 +96,9 @@
   --color-foreground: var(--foreground);
   --font-sans: "Golos Text", ui-sans-serif, system-ui;
   --font-heading: "Barlow", ui-sans-serif, system-ui;
+  --font-space-grotesk: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --font-golos-text: var(--font-golos-text), "Golos Text", sans-serif;
+  --font-cal-sans: "Cal Sans", var(--font-space-grotesk), "Barlow", sans-serif;
 
   /* Brand colors - exact match from Brickz */
   --color-yellow: #fed403;
@@ -103,16 +106,22 @@
   --color-social-bg: rgb(89, 88, 93);
   --color-dark: #1a1a1a;
   --color-dark-2: #222222;
+  --color-dark-hero: #272727;
   --color-dark-card: #252525;
   --color-navbar: #2b2b2b;
   --color-navbar-scrolled: #252525;
   --color-card-dark: rgb(49, 49, 49);
+  --color-input-dark: #363636;
+  --color-border-dark: #444444;
+  --color-quote-gold: #5a5223;
   --color-quote-text: rgba(255, 255, 255, 0.8);
   --color-gray-bg: #f6f6f6;
   --color-gray-light: #f3f3f3;
+  --color-gray-track: #eeeeee;
   --color-gray-mid: #888888;
   --color-gray-text: #b0b0b0;
   --color-hero-desc: #767676;
+  --color-body-text: #59585d;
   --color-dark-blue: rgb(43, 43, 43);
   --color-white: #ffffff;
   --color-transparent-text: rgba(2, 1, 1, 0);
@@ -158,7 +167,7 @@ body {
 
 /* ---- OUTLINE TEXT ---- */
 .text-outline {
-  -webkit-text-stroke: 2px #1a1a1a;
+  -webkit-text-stroke: 2px var(--color-dark);
   color: transparent;
 }
 
@@ -171,7 +180,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #fed403;
+  color: var(--color-yellow);
   margin-bottom: 16px;
 }
 .section-tag::before {
@@ -179,7 +188,7 @@ body {
   display: block;
   width: 30px;
   height: 2px;
-  background: #fed403;
+  background: var(--color-yellow);
 }
 
 /* ---- BUTTON BASE ---- */
@@ -197,47 +206,57 @@ body {
   padding: 14px 32px;
 }
 .btn-yellow {
-  background: #fed403;
-  color: #1a1a1a;
+  background: var(--color-yellow);
+  color: var(--color-dark);
 }
 .btn-yellow:hover {
-  background: #1a1a1a;
-  color: #fed403;
+  background: var(--color-dark);
+  color: var(--color-yellow);
 }
 .btn-dark {
-  background: #1a1a1a;
-  color: #ffffff;
+  background: var(--color-dark);
+  color: var(--color-white);
 }
 .btn-dark:hover {
-  background: #fed403;
-  color: #1a1a1a;
+  background: var(--color-yellow);
+  color: var(--color-dark);
 }
 .btn-outline-white {
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.4);
-  color: #ffffff;
+  color: var(--color-white);
 }
 .btn-outline-white:hover {
-  background: #fed403;
-  border-color: #fed403;
-  color: #1a1a1a;
+  background: var(--color-yellow);
+  border-color: var(--color-yellow);
+  color: var(--color-dark);
 }
 
 /* ---- FORM INPUT ---- */
 .form-input {
   width: 100%;
-  background: #252525;
+  background: var(--color-dark-card);
   border: none;
-  border-bottom: 2px solid #333333;
-  color: #ffffff;
+  border-bottom: 2px solid var(--color-input-dark);
+  color: var(--color-white);
   padding: 14px 16px;
   font-size: 0.875rem;
   outline: none;
   transition: border-color 0.25s;
 }
 .form-input::placeholder {
-  color: #888888;
+  color: var(--color-gray-mid);
 }
 .form-input:focus {
-  border-bottom-color: #fed403;
+  border-bottom-color: var(--color-yellow);
 }
+
+/* ---- HIDE SCROLLBAR UTILITY ---- */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+

@@ -14,6 +14,7 @@ import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoIosMail } from "react-icons/io";
 import { CgMenuRight } from "react-icons/cg";
 import Button from "./common/Button";
+import AnimatedButton from "./common/AnimatedButton";
 
 // Gallery images reusing existing project assets
 const SIDEBAR_GALLERY = [
@@ -31,6 +32,17 @@ export default function Header() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const headerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (mobileOpen || sidebarOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen, sidebarOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,8 +115,8 @@ export default function Header() {
           initial={false}
           animate={{ y: scrolled ? [-90, 0] : 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className={`w-full bg-card-dark shadow-[0_1px_0_0_#313131] z-50 ${
-            scrolled ? "fixed top-0 left-0 shadow-xl" : "absolute top-0 left-0"
+          className={`w-full bg-card-dark border-b border-white/10 z-50 ${
+            scrolled ? "fixed top-0 left-0" : "absolute top-0 left-0"
           }`}
         >
           <div className="w-full mx-auto px-4 md:px-5 flex items-center justify-between h-[80px] lg:h-[90px]">
@@ -131,14 +143,17 @@ export default function Header() {
                   <a
                     key={label}
                     href={href}
-                    className="relative px-4 py-2 text-[15px] font-bold transition-colors group"
-                    style={{ color: isActive ? "#FED403" : "#ffffff" }}
+                    className="relative px-4 py-2 text-[16px] font-medium leading-[22.4px] tracking-normal transition-colors group"
+                    style={{
+                      fontFamily: 'var(--font-golos-text), "Golos Text", sans-serif',
+                      color: isActive ? "var(--color-yellow)" : "var(--color-white)",
+                    }}
                     onClick={() => setMobileOpen(false)}
                   >
                     {label}
                     <style jsx>{`
                       a:hover {
-                        color: #fed403 !important;
+                        color: var(--color-yellow) !important;
                       }
                     `}</style>
                   </a>
@@ -154,13 +169,13 @@ export default function Header() {
             </div>
 
             <div className="flex items-center gap-[8px] sm:gap-[12px] lg:gap-[15px]">
-              <button className="flex items-center justify-center w-[36px] h-[36px] lg:w-[45px] lg:h-[45px] rounded-full border border-white/20 text-white hover:bg-yellow-400 hover:text-gray-900 transition-colors">
+              <button className="flex items-center justify-center w-[36px] h-[36px] lg:w-[45px] lg:h-[45px] rounded-full border border-white/20 text-white hover:text-yellow transition-colors cursor-pointer">
                 <Search className="w-[16px] h-[16px] lg:w-5 lg:h-5" />
               </button>
 
               {/* Mobile menu button (< lg) */}
               <button
-                className="flex lg:hidden items-center justify-center w-[36px] h-[36px] rounded-full border border-white/20 text-white hover:bg-yellow-400 hover:text-gray-900 transition-colors"
+                className="flex lg:hidden items-center justify-center w-[36px] h-[36px] rounded-full border border-white/20 text-white hover:text-yellow transition-colors cursor-pointer"
                 onClick={() => setMobileOpen((o) => !o)}
                 aria-label="Toggle mobile menu"
               >
@@ -169,7 +184,7 @@ export default function Header() {
 
               {/* Desktop sidebar toggle button (lg+) */}
               <button
-                className="hidden lg:flex items-center justify-center w-[45px] h-[45px] rounded-full border border-white/20 text-white hover:bg-yellow-400 hover:text-gray-900 transition-colors"
+                className="hidden lg:flex items-center justify-center w-[45px] h-[45px] rounded-full border border-white/20 text-white hover:text-yellow transition-colors cursor-pointer"
                 onClick={() => setSidebarOpen((o) => !o)}
                 aria-label="Toggle sidebar"
               >
@@ -201,7 +216,7 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.35, ease: "easeInOut" }}
-              className="fixed top-0 right-0 h-full w-[300px] sm:w-[340px] bg-[#2b2b2b] z-[100] shadow-2xl flex flex-col lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 h-full w-[300px] sm:w-[340px] bg-navbar z-[100]  flex flex-col lg:hidden overflow-y-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             >
               {/* Top Header Row with Logo and Yellow Close Button */}
               <div className="relative flex items-center justify-between p-6 pt-7 pb-6 border-b border-gray-700/40">
@@ -218,7 +233,7 @@ export default function Header() {
                 {/* Bright Yellow Close Button Square anchored at top right */}
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="absolute top-0 right-0 w-[44px] h-[44px] bg-[#FED403] hover:bg-white text-dark flex items-center justify-center transition-colors duration-200 cursor-pointer"
+                  className="absolute top-0 right-0 w-[44px] h-[44px] bg-yellow text-dark flex items-center justify-center cursor-pointer"
                   aria-label="Close menu"
                 >
                   <X className="w-4 h-4 stroke-[3] text-black" />
@@ -235,10 +250,10 @@ export default function Header() {
                       key={label}
                       href={href}
                       onClick={() => setMobileOpen(false)}
-                      className={`py-4 text-[17px] font-bold border-b border-gray-700/50 transition-colors duration-200 ${
-                        isActive ? "text-[#FED403]" : "text-white hover:text-[#FED403]"
+                      className={`py-4 text-[16px] font-medium leading-[22.4px] tracking-normal border-b border-gray-700/50 transition-colors duration-200 ${
+                        isActive ? "text-yellow" : "text-white hover:text-yellow"
                       }`}
-                      style={{ fontFamily: "Barlow, Inter, sans-serif" }}
+                      style={{ fontFamily: 'var(--font-golos-text), "Golos Text", sans-serif' }}
                     >
                       {label}
                     </a>
@@ -280,25 +295,23 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.35, ease: "easeInOut" }}
-              className="fixed top-0 right-0 h-full w-full max-w-[450px] bg-card-dark z-[100] shadow-2xl hidden lg:flex flex-col overflow-hidden"
+              className="fixed top-0 right-0 h-full w-full max-w-[450px] bg-card-dark z-[100]  hidden lg:flex flex-col overflow-hidden"
             >
               {/* Yellow close button — top-LEFT corner, overlapping panel edge, above scroll */}
               <button
                 onClick={() => setSidebarOpen(false)}
-                className="absolute top-0 left-0 w-[44px] h-[44px] bg-[#FED403] hover:bg-white flex items-center justify-center transition-colors duration-200 cursor-pointer z-20"
+                className="absolute top-0 left-0 w-[45px] h-[40px] bg-yellow text-black flex items-center justify-center cursor-pointer z-20"
                 aria-label="Close sidebar"
               >
-                <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1L17 17M17 1L1 17" stroke="black" strokeWidth="2.5" strokeLinecap="round"/>
-                </svg>
+                <X size={34} strokeWidth={1} />
               </button>
 
               {/* Scrollable body — 40px padding, top padding accounts for close button height */}
-              <div className="flex flex-col gap-8 px-[40px] pt-[70px] pb-[40px] overflow-y-auto h-full">
+              <div className="flex flex-col gap-8 px-[50px] pt-[80px] pb-[40px] overflow-y-auto h-full no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
 
                 {/* Logo */}
                 <Link href="/" onClick={() => setSidebarOpen(false)} className="flex items-center">
-                  <Image src={logo} alt="Brickz Logo" width={140} height={44} className="h-[38px] w-auto object-contain" />
+                  <Image src={logo} alt="Brickz Logo" width={140} height={44} className="h-[38px] w-auto object-cover" />
                 </Link>
 
                 {/* Description */}
@@ -306,27 +319,27 @@ export default function Header() {
                   We love to bring to life as a developer and I aim the today do this using what ever front tools necessary.
                 </p>
 
-                {/* 3×2 Photo Gallery Grid — 100px × 100px images, 10px gap */}
-                <div className="grid grid-cols-3 gap-[10px]">
+                {/* 3×2 Photo Gallery Grid — perfectly fills available width */}
+                <div className="grid grid-cols-3 gap-[10px] w-full">
                   {SIDEBAR_GALLERY.map((src, i) => (
-                    <div key={i} className="relative w-[100px] h-[100px] overflow-hidden">
+                    <div key={i} className="relative w-full aspect-square overflow-hidden">
                       <Image
                         src={src}
                         alt={`Gallery ${i + 1}`}
                         fill
                         className="object-cover hover:scale-110 transition-transform duration-500"
-                        sizes="100px"
+                        sizes="(max-width: 450px) 33vw, 120px"
                       />
                     </div>
                   ))}
                 </div>
 
                 {/* Contact Info — plain text lines, no icons */}
-                <div className="flex flex-col gap-[10px]">
-                  <a href="tel:+990123456789" className="text-gray-300 text-[15px] hover:text-[#FED403] transition-colors" style={{ fontFamily: '"Golos Text", sans-serif' }}>
+                <div className="flex flex-col gap-[20px]">
+                  <a href="tel:+990123456789" className="text-gray-300 text-[15px] hover:text-yellow transition-colors" style={{ fontFamily: '"Golos Text", sans-serif' }}>
                     Call us: +990 123 456 789
                   </a>
-                  <a href="mailto:construction@gmail.com" className="text-gray-300 text-[15px] hover:text-[#FED403] transition-colors" style={{ fontFamily: '"Golos Text", sans-serif' }}>
+                  <a href="mailto:construction@gmail.com" className="text-gray-300 text-[15px] hover:text-yellow transition-colors" style={{ fontFamily: '"Golos Text", sans-serif' }}>
                     Email: construction@gmail.com
                   </a>
                   <span className="text-gray-300 text-[15px]" style={{ fontFamily: '"Golos Text", sans-serif' }}>
@@ -346,7 +359,7 @@ export default function Header() {
                       key={label}
                       href="#"
                       aria-label={label}
-                      className="w-[38px] h-[38px] bg-[#2a2a2b] border border-white/15 flex items-center justify-center text-white hover:bg-[#FED403] hover:border-[#FED403] hover:text-black transition-all duration-200"
+                      className="w-[38px] h-[38px] bg-card-dark border border-white/15 flex items-center justify-center text-white hover:bg-yellow hover:border-yellow hover:text-black transition-all duration-200"
                     >
                       <Icon className="w-[14px] h-[14px]" />
                     </a>
@@ -354,8 +367,8 @@ export default function Header() {
                 </div>
 
                 {/* Get In Touch Button */}
-                <div className="w-full">
-                  <Button
+                <div className="w-40">
+                  <AnimatedButton
                     href="#contact"
                     text="Get In Touch"
                     onClick={() => setSidebarOpen(false)}

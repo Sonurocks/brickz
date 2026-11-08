@@ -48,8 +48,13 @@ export default function Blogs() {
         const { clientWidth, scrollWidth, scrollLeft } = scrollRef.current;
         const maxScroll = scrollWidth - clientWidth;
         
-        // Calculate width of one card + gap (showing 2 cards on md+)
-        const cardWidth = window.innerWidth >= 768 ? clientWidth / 2 : clientWidth;
+        // Calculate width of one card + gap (showing 3 cards on xl+, 2 on md+)
+        const cardWidth =
+          window.innerWidth >= 1280
+            ? clientWidth / 3
+            : window.innerWidth >= 768
+            ? clientWidth / 2
+            : clientWidth;
 
         // If we've reached the end, rewind to start, otherwise scroll by 1 card
         if (scrollLeft >= maxScroll - 10) {
@@ -94,7 +99,7 @@ export default function Blogs() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
               viewport={{ once: true }}
-              className="w-full md:w-[calc(50%-14px)] shrink-0 snap-start bg-white border border-gray-200 rounded-lg overflow-hidden group duration-300"
+              className="w-full md:w-[calc(50%-14px)] xl:w-[calc((100%-56px)/3)] shrink-0 snap-start bg-white border border-gray-200 rounded-lg overflow-hidden group duration-300"
             >
               {/* Image Section */}
               <div className="w-full h-[320px] relative overflow-hidden">
@@ -102,6 +107,7 @@ export default function Blogs() {
                   src={post.image}
                   alt={post.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>

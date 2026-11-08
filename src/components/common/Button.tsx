@@ -12,7 +12,7 @@ export default function Button({ text, href = "#", className = "", onClick }: Bu
     <a
       href={href}
       onClick={onClick}
-      className={`relative inline-flex items-center text-[15px] font-medium rounded-sm group bg-[#FED403] text-[rgb(26,26,26)] overflow-hidden ${className}`}
+      className={`relative inline-flex items-center text-[15px] font-medium rounded-sm group bg-yellow text-dark overflow-hidden cursor-pointer ${className}`}
     >
       {/* INVISIBLE SPACER TO FORCE EXACT ORIGINAL DIMENSIONS */}
       <div className="opacity-0 pointer-events-none flex items-center gap-4 py-[9px]" style={{ paddingLeft: "24px", paddingRight: "8px" }}>
@@ -27,7 +27,7 @@ export default function Button({ text, href = "#", className = "", onClick }: Bu
       
       {/* VISIBLE ICON */}
       <span
-        className="absolute right-[8px] group-hover:right-[calc(100%-44px)] transition-all duration-300 ease-out w-9 h-9 flex shrink-0 items-center justify-center bg-[#2B2B2B]"
+        className="absolute right-[8px] group-hover:right-[calc(100%-44px)] transition-all duration-300 ease-out w-9 h-9 flex shrink-0 items-center justify-center bg-navbar"
         style={{ borderRadius: 6, top: "50%", marginTop: "-18px" }}
       >
         <BsArrowUpRight

@@ -9,10 +9,7 @@ interface SectionTagProps {
 
 export default function SectionTag({ label, light = false }: SectionTagProps) {
   return (
-    <span
-      className="section-tag"
-      style={{ color: '#FED403' }}
-    >
+    <span className="section-tag text-yellow">
       {label}
     </span>
   );

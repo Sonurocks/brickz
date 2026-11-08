@@ -13,7 +13,7 @@ const fadeUp = {
 
 export default function Hero() {
   return (
-    <section id="home" className="relative w-full bg-[#272727] overflow-hidden ">
+    <section id="home" className="relative w-full bg-dark-hero overflow-hidden ">
       {/* Large Watermark Logo */}
       {/* <div className="absolute bottom-10 left-10 lg:left-32 opacity-[0.03] pointer-events-none w-[300px] h-[300px] lg:w-[450px] lg:h-[450px] z-0">
         <Image src={logo} alt="Watermark" fill className="object-contain" />
@@ -69,7 +69,7 @@ export default function Hero() {
             className="w-full lg:w-[52.5%] max-w-[800px] flex-shrink-0 lg:-mt-[240px] relative z-20"
           >
             {/* Yellow Top Section */}
-            <div className="bg-[#FED403] p-6 pb-8 md:p-10 md:pb-12 lg:p-14 lg:pb-16 w-full rounded-t-sm">
+            <div className="bg-yellow p-6 pb-8 md:p-10 md:pb-12 lg:p-14 lg:pb-16 w-full rounded-t-sm">
               <span className="text-[13px] font-medium tracking-widest uppercase text-dark-blue block mb-4">
                 CONTACT WITH US NOW
               </span>
@@ -86,33 +86,52 @@ export default function Hero() {
 
             {/* White Form Section */}
             <div className="bg-white p-5 md:p-8 lg:p-14 shadow-2xl w-full">
-              <form className="flex flex-col gap-6">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const target = e.currentTarget as HTMLFormElement;
+                  const btn = target.querySelector('button[type="submit"]') as HTMLButtonElement;
+                  if (btn) {
+                    const orig = btn.innerText;
+                    btn.innerText = "✓ Request Received!";
+                    btn.classList.add("bg-green-600");
+                    setTimeout(() => {
+                      btn.innerText = orig;
+                      btn.classList.remove("bg-green-600");
+                      target.reset();
+                    }, 3000);
+                  }
+                }}
+                className="flex flex-col gap-6"
+              >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <input
                     type="text"
-                    placeholder="Full Name*"
-                    className="border border-gray-200 px-5 py-4 text-[14px] outline-none focus:border-yellow-400 transition-colors placeholder:text-gray-500"
+                    required
+                    placeholder="Your Name*"
+                    className="border border-gray-200 px-5 py-4 text-[14px] outline-none focus:border-yellow transition-colors placeholder:text-gray-500"
                   />
                   <input
                     type="email"
-                    placeholder="Email Address*"
-                    className="border border-gray-200 px-5 py-4 text-[14px] outline-none focus:border-yellow-400 transition-colors placeholder:text-gray-500"
+                    required
+                    placeholder="Your Email*"
+                    className="border border-gray-200 px-5 py-4 text-[14px] outline-none focus:border-yellow transition-colors placeholder:text-gray-500"
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <input
                     type="tel"
                     placeholder="Phone Number*"
-                    className="border border-gray-200 px-5 py-4 text-[14px] outline-none focus:border-yellow-400 transition-colors placeholder:text-gray-500"
+                    className="border border-gray-200 px-5 py-4 text-[14px] outline-none focus:border-yellow transition-colors placeholder:text-gray-500"
                   />
                   <div className="relative">
-                    <select className="w-full border border-gray-200 px-5 py-4 text-[14px] outline-none focus:border-yellow-400 transition-colors text-gray-500 bg-white appearance-none cursor-pointer">
+                    <select className="w-full border border-gray-200 px-5 py-4 text-[14px] outline-none focus:border-yellow transition-colors text-gray-500 bg-white appearance-none cursor-pointer">
                       <option value="">Your Services</option>
                       <option>Residential Construction</option>
                       <option>Commercial Construction</option>
                       <option>Industrial Construction</option>
                     </select>
-                    <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-[#FED403]">
+                    <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-yellow">
                       <svg
                         width="12"
                         height="12"
@@ -131,11 +150,11 @@ export default function Hero() {
                 <textarea
                   placeholder="Message*"
                   rows={4}
-                  className="border border-gray-200 px-5 py-4 text-[14px] outline-none focus:border-yellow-400 transition-colors placeholder:text-gray-500 resize-none"
+                  className="border border-gray-200 px-5 py-4 text-[14px] outline-none focus:border-yellow transition-colors placeholder:text-gray-500 resize-none"
                 ></textarea>
                 <button
                   type="submit"
-                  className="w-full bg-[#272727] text-white font-bold text-[14px] tracking-wider uppercase py-4 transition-colors rounded-sm "
+                  className="w-full bg-dark-hero hover:bg-[#1a1a1a] text-white font-bold text-[14px] tracking-wider uppercase py-4 transition-colors rounded-sm cursor-pointer"
                 >
                   Submit Request
                 </button>
